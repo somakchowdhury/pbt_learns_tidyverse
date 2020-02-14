@@ -11,6 +11,16 @@ If you are able to open this notebook and render it using knit, then you have su
 - Installed R studio 
 - Potentially also have a github account 
 
+# Preparation
+
+- Github account. See readme and follow the link to github and create an account. 
+- Make a repository. 
+- Start a project with R that has version control in a folder of your choice in your computer. 
+- How to connect this repository to github in R studio.
+- Create a readme using text editor for your repo. Save in the repository folder as `README.md`
+- Commit the changes made through R studio
+- Finally, push the changes to github.
+
 
 ### 1. Typical R project structure (Best practices)
 
