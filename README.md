@@ -38,9 +38,6 @@ BYOL (bring your own laptop) with functioning internet connection.
 - Summarize using a pipe (more powerful)
 - Convert data from wide to long format.
 - Drop observations from data
-
-## PART 3
-
 - Data filtering
 - Rearrange data
 - Create new columns and rearrange new columns
