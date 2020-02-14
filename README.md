@@ -25,7 +25,6 @@ BYOL (bring your own laptop) with functioning internet connection.
   - Narrate your data analysis to your future self
 - There are cheatsheets for most tidyverse packages. You can find useful ones in the `/cheetsheats` folder.
 - Installing packages and loading them into an R session. 
-- Creating dependency lists for your analysis and loading the packages together in one go.
 - Keeping a track of your session. 
 - Saving everything and commiting changes.
 
@@ -39,9 +38,6 @@ BYOL (bring your own laptop) with functioning internet connection.
 - Summarize using a pipe (more powerful)
 - Convert data from wide to long format.
 - Drop observations from data
-
-## PART 3
-
 - Data filtering
 - Rearrange data
 - Create new columns and rearrange new columns
@@ -57,6 +53,7 @@ BYOL (bring your own laptop) with functioning internet connection.
 
 
 # To do list
+ - Make repo public
 
 
  
