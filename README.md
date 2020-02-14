@@ -1,4 +1,4 @@
-# Introduction to using R effectively to explore data 
+# Introduction to using R to effectively explore data 
 
 The sciences that explore biological data are going through a surge in terms of the amount of data they produce. One issue that has always plagued these areas is reroducible data analysis. 
 
