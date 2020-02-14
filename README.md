@@ -1,6 +1,7 @@
-# Introduction to using R to effectively explore data 
+# Introduction to using R and git
+## A step in the direction of reproducible data analysis.
 
-The sciences that explore biological data are going through a surge in terms of the amount of data they produce. One issue that has always plagued these areas is reroducible data analysis. 
+The sciences that explore biological data are going through a surge in terms of the amount of data they produce. One issue that has always plagued these areas is reroducible data analysis. This repository is associated with an internal seminar to teach lab member reproducible data management in R using tidyverse.
 
 # Prerequisites
 
