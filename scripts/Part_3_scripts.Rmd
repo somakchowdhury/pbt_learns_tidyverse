@@ -148,3 +148,26 @@ Yes why not. Just because you asked nicely.
 ## These are not the only types of plots. Lets look at the cheatsheet and make some plots.
 
 May be each person could make a plot with the data and show us the graph. 
+
+## Saving your graphs so you can use them for papers and presentations.
+
+Now that you have created so many graphs its time to save them. Currently these graphs exists as R code and not object. So lets make an R object of the graphs. 
+
+```{r}
+#Save graph: Save to an R object
+
+```
+See what happens when you call this R object.
+```{r}
+#Call the object plot 
+
+```
+
+Now lets save the object plot.
+
+```{r}
+#Saving the figure in object plot
+
+```
+
+

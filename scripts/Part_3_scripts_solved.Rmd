@@ -181,3 +181,30 @@ ggplot(passengers1, aes(x = Sex, fill = Survived)) +
 ## These are not the only types of plots. Lets look at the cheatsheet and make some plots.
 
 May be each person could make a plot with the data and show us the graph. 
+
+## Saving your graphs so you can use them for papers and presentations.
+
+Now that you have created so many graphs its time to save them. Currently these graphs exists as R code and not object. So lets make an R object of the graphs. 
+
+```{r}
+#Save graph: Save to an R object
+plot <- ggplot(passengers1, aes(x = Sex, fill = Survived)) +
+          geom_bar(color = "black")+
+          scale_y_continuous(breaks=seq(0,1000,50), expand = c(0,0))+
+          xlab("Gender of Passengers")+
+          ylab("Number of Passengers")+
+          theme_classic()
+```
+See what happens when you call this R object.
+```{r}
+#Call the object plot 
+plot
+```
+
+Now lets save the object plot.
+
+```{r}
+#Saving the figure in object plot
+ggsave("../Output/plot.pdf", plot = plot, scale = 1, width = 10, height = 10, units = c("cm"), dpi=600)
+```
+
