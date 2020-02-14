@@ -1,0 +1,176 @@
+---
+title: 'Course: Part 2'
+output:
+  html_document:
+    df_print: paged
+---
+
+Now that you have a fair bit of idea about how github, R, R studio and R markdown works, lets begin the work we started this for. Data analysis!
+
+A typical data analysis workflow looks like this.![A Tidy Data Workflow](../data/img/tidyverse2.png)
+
+We will be learning how to import data and use tidyverse to explore the data. 
+
+## 1. Lets fire up an R code chunk and activate the package `tidyverse` we installed in Part 1.
+
+```{r}
+# Activate package tidyverse
+library(tidyverse)
+```
+
+## 2. Import data for this excercise. 
+
+In this tutotrial we are using the titanic passenger information. See [dataset description](https://www.kaggle.com/c/titanic/data) for more details.
+
+```{r}
+# Import data
+passengers <- read.csv("../data/train.csv") 
+```
+
+Lets understand this command a little more: 
+
+1. **passengers**  = R object we want to load the data to. This would be the name of our data inside R. 
+2. `<-` = This is R syntax that tells R to save information into an R object.
+3. `read.csv("../data/train.csv")` = R command whose output you are interested in. 
+
+So here you are telling R that create an object called `passengers` and add information to it `<-` from this command `read.csv("../data/train.csv")`
+
+**Note** - look at how we call the data file. The R environment is set to your project folder so if you use `../` and press tab you will see the files in the folder. 
+
+**To see help on a function use the following command** 
+```{r}
+#Check help for a certain function
+#?read.csv
+```
+
+
+This was a comma separated file that I gave you. What if your data uses a different delimiter like say tab. What to do then??? 
+
+This would be a good time to look at the data import cheatsheet. `cheatsheet/data-import.pdf`
+
+Here is a data import command for a tab separated file. 
+```{r}
+# Import data
+#passengers <- read_tsv("file.tsv")
+
+#Another way
+# passengers <- read.delim("../data/file.txt", header = TRUE, check.names=F)
+```
+Try to see the functions associated with added options used in the alternative data import command.
+
+Finally lets look at the data itself
+```{r}
+#passengers
+```
+
+
+## 3. Get an overview of the data
+
+For this we use the function `summary(Robject)`.
+
+```{r}
+summary(passengers)
+```
+
+This uses base R for showing you the summary. But we are learning the tidyverse so we will do this the tidy way and use a new symbol `%>%` called pipe.
+
+```{r}
+# Summarize titanic using a pipe
+passengers %>%
+  summary()
+```
+
+Note here we piped the data through a function. This is very powerful as we can pipe data from a function and the result through another function. This is kinda like how we think about our data.
+
+For example say we want to drop all `NA` values and then get the summary of the data. 
+
+```{r}
+# Summarize titanic after dropping na
+passengers %>% 
+  drop_na() %>% 
+  summary()
+```
+
+You may have noticed stylistic consistency in the code that we've written above. That's because we're adhering to a style guide. In data science *and* programming/coding in general, it's important to get accustomed to using a style guide asap. As Hadley Wickham puts it in the [tidyverse style guide](http://style.tidyverse.org/index.html),
+
+> Good coding style is like correct punctuation: you can manage without it, butitsuremakesthingseasiertoread.
+
+## 4. Data wrangling using dplyr. 
+
+Now it's time to explore your data and get some initial insight into the dataset. You'll be using `dplyr` **verbs** such as `filter`, `arrange` and `mutate`, which do exactly what they say. 
+
+Let's sat that we wanted to choose a particular set of observations, say, those for which the "Sex" was 'female'. `dplyr` allows us to do intuitively and in a language that mirrors how we think and talk about data.
+
+The `filter` verb chooses only the observations that match the condition. See it in action:
+
+```{r message = FALSE}
+# Filter to get all "male" rows
+passengers %>% 
+  filter(Sex == "male")
+```
+**What do you see about the survival of male passenger?**
+**Note**: 
+
+* you can read `dplyr` code like a sentence: take your data and then (`%>%`) filter it according the condition that the sex is male.
+* the above does **not** alter the original dataframe.
+* `filter(Sex = "male")` is a common error (I've made it); there's a cool [tidyverse error guide](http://style.tidyverse.org/error-messages.html).
+
+Do the same for female passengers
+
+```{r message = FALSE}
+# Filter to get all "female" rows
+passengers %>% 
+  filter(Sex == "female")
+```
+
+Lets say you wanted to `arrange` your observations by increaing Fare to see if you can notice any trends. You can use the **verb** `arrange` to achieve this:
+
+```{r message = FALSE}
+# Arrange by increasing Fare
+passengers %>% 
+  arrange(Fare)
+```
+
+**What can you see here?** 
+
+You can also `arrange` by decreasing Fare:
+
+```{r message = FALSE}
+# Arrange by decreasing Fare
+passengers %>% 
+  arrange(desc(Fare))
+```
+
+
+Sometimes you may wish to create new variables. We know that the variable "Parch" is the number of parents and children while "SibSp" is the number of siblings and spouses. We can add these together to get a new variable "FamSize". To do so, you `mutate` the original variables into the new one.
+
+```{r message = FALSE}
+# Create new column FamSize (size of family)
+passengers %>% 
+  mutate(FamSize = Parch + SibSp)
+```
+
+**Note:**
+
+* `mutate()` can be used to create new columns but also modify existing columns in much the same way that a mutation may from a biological perspective. It's not exactly right but a nice way to provide context for verb choice.
+
+**Is it possible that larger family have a lower rate of survival?**
+
+To test this hypothesis, create a new variable "FamSize" as the sum of "Parch" and "SibSp" as above, then arrange by decreasing "FamSize":
+
+```{r message = FALSE}
+# Create new column FamSize (size of family)
+# Arrange by decreasing FamSize
+passengers %>% 
+  mutate(FamSize = Parch + SibSp) %>% 
+  arrange(desc(FamSize))
+```
+
+As zeroes and ones don't often say a great deal, mutate the values of the "Survived" variable to strings "No" and "Yes" (and create new dataframe!):
+
+```{r message = FALSE}
+# Turn numerical values of Survived column to "No" & "Yes" (new dataframe)
+passengers1 <- passengers %>% 
+  mutate(Survived = ifelse(Survived == 0, "No", "Yes"))
+passengers1
+```
