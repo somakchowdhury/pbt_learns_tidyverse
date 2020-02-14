@@ -1,0 +1,177 @@
+---
+title: "Part 4 Plotting the data"
+output:
+  html_document:
+    df_print: paged
+---
+
+Now for the fun bit. We will learn how to plot our data. 
+
+Load up the data once more since this is a new session.
+```{r}
+library(tidyverse)
+passengers<-read.csv("../data/train.csv")
+```
+
+
+## Plotting your data
+
+To plot your data using `ggplot2`, you specify three things:
+
+* Your data
+* Your aesthetics (e.g. what's on the x-axis)
+* Your layers (e.g. barplot, scatterplot)
+
+Also see the ggplot cheatsheet - ENGLISH - `cheatsheets/data-visualization-2.1.pdf` GERMAN - `cheatsheets/ggplot2-german_cheatsheet.pdf`
+
+First you'll plot a barplot of Sex to see how many males and females were recorded aboard the Titanic:
+
+```{r message = FALSE}
+# Plot barplot of passenger Sex
+ggplot(passengers, aes(x = Sex)) +
+  geom_bar()
+```
+**What can you see here?** 
+
+**Note:**
+
+*  the `aes()` function is really a way to map the `aes`thetics of the plot to the variables in the data. See [Modern Dive](http://moderndive.com/3-viz.html#grammarofgraphics) by Chester Ismay & Albert Y. Kim for more.
+
+Now it's time for some scatter plots. Is the Age of any given passenger correlated with the Fare that they paid?
+
+```{r message = FALSE}
+# Scatter plot of Age vs Fare
+ggplot(passengers, aes(x = Age, y = Fare)) +
+  geom_point()
+```
+
+
+Let's take the previous plot and color each point by Sex, to see any correlations between Sex, Age and Fare:
+
+```{r message = FALSE}
+# Scatter plot of Age vs Fare colored by Sex
+ggplot(passengers %>% drop_na(), aes(x = Age, y = Fare, color = Sex)) +
+  geom_point()
+```
+
+**What can you see here?** 
+
+Also note that we used a pipe in the data. So you can on the fly change your data and plot it. 
+
+## Lets play now with no zeros and ones we created towards the end of part 2
+
+As zeroes and ones don't often say a great deal, mutate the values of the "Survived" variable to strings "No" and "Yes" (and create new dataframe!):
+
+```{r message = FALSE}
+# Turn numerical values of Survived column to "No" & "Yes" (new dataframe)
+passengers1 <- passengers %>% 
+  mutate(Survived = ifelse(Survived == 0, "No", "Yes"))
+passengers1
+```
+
+## Facetting your graph
+
+Visualizing three variables on one plot is pretty cool, but what if wanted to throw the Survived variable into the mix to see if there are any apparent trends?
+
+Faceting is a way to produce multiple plots simultaneously:
+
+```{r message = FALSE}
+# Scatter plot of Age vs Fare colored by Sex faceted by Survived
+ggplot(passengers1, aes(x = Age, y = Fare, color = Sex)) +
+  geom_point() +
+  facet_grid(~Survived)
+```
+**What can you see here?** 
+
+Now let's redo our bar plot of passenger "Sex" and this time fill our bars according to "Survived":
+
+```{r message = FALSE}
+# Plot barplot of passenger Sex & fill according to Survival
+ggplot(passengers1, aes(x = Sex, fill = Survived)) +
+  geom_bar()
+```
+
+**What can you see here?** 
+
+## Plot axis modifications
+
+Say now you want to modify the axis of the graph above
+
+```{r}
+# Plot barplot of passenger Sex & fill according to Survival
+ggplot(passengers1, aes(x = Sex, fill = Survived)) +
+  geom_bar()+
+  scale_y_continuous(breaks=seq(0,1000,50))
+```
+What we have done there is changes the scale of the y axis.
+
+We used `scale_y_continuous(breaks=seq(0,1000,50))` which essentially says breaks are sequentially added between 0 to 1000 at intervals of 50 units. 
+
+**CHANGE AXIS TITLES**
+
+ Often one wants to change axis titles and this is an easy step. Below is the R code for doing so. 
+ 
+```{r}
+ggplot(passengers1, aes(x = Sex, fill = Survived)) +
+  geom_bar()+
+  scale_y_continuous(breaks=seq(0,1000,50))+
+  xlab("Gender of Passengers")+
+  ylab("Number of Passengers")
+```
+ `xlab` and `ylab` can alter the column headings to more meaningful names. 
+ 
+ **How do we change the theme of the graph?**
+ 
+ That grey backdrop is very ugly. Lets change that.
+ 
+```{r}
+ggplot(passengers1, aes(x = Sex, fill = Survived)) +
+  geom_bar()+
+  scale_y_continuous(breaks=seq(0,1000,50))+
+  xlab("Gender of Passengers")+
+  ylab("Number of Passengers")+
+  theme_bw()
+```
+ 
+ **But the lines too are very annoying. Can we get rid of them??**
+  yes ggplot has you covered.
+  
+```{r}
+ggplot(passengers1, aes(x = Sex, fill = Survived)) +
+  geom_bar()+
+  scale_y_continuous(breaks=seq(0,1000,50))+
+  xlab("Gender of Passengers")+
+  ylab("Number of Passengers")+
+  theme_classic()
+```
+
+**Why are my bars floating can they sit on the x axis**
+
+you asked and ggplot delivered!
+
+```{r}
+ggplot(passengers1, aes(x = Sex, fill = Survived)) +
+  geom_bar()+
+  scale_y_continuous(breaks=seq(0,1000,50), expand = c(0,0))+
+  xlab("Gender of Passengers")+
+  ylab("Number of Passengers")+
+  theme_classic()
+```
+**Identify what changed?**
+
+**But can you add a black border to the bars? That would look good.**
+
+Yes why not. Just because you asked nicely.
+
+```{r}
+ggplot(passengers1, aes(x = Sex, fill = Survived)) +
+  geom_bar(color = "black")+
+  scale_y_continuous(breaks=seq(0,1000,50), expand = c(0,0))+
+  xlab("Gender of Passengers")+
+  ylab("Number of Passengers")+
+  theme_classic()
+```
+
+## These are not the only types of plots. Lets look at the cheatsheet and make some plots.
+
+May be each person could make a plot with the data and show us the graph. 
