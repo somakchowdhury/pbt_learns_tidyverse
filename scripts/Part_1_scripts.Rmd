@@ -21,6 +21,10 @@ If you are able to open this notebook and render it using knit, then you have su
 - Commit the changes made through R studio
 - Finally, push the changes to github.
 
+Note: I have added a git cheatsheet too in the `/cheatsheet` folder. Its more suited to commandline but may come in handy later.
+
+For a more R related aspects of git use this [web-book](https://happygitwithr.com/)
+
 
 ### 1. Typical R project structure (Best practices)
 

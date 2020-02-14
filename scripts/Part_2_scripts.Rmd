@@ -15,7 +15,7 @@ We will be learning how to import data and use tidyverse to explore the data.
 
 ```{r}
 # Activate package tidyverse
-#library(tidyverse)
+library(tidyverse)
 ```
 
 ## 2. Import data for this excercise. 
@@ -24,7 +24,7 @@ In this tutotrial we are using the titanic passenger information. See [dataset d
 
 ```{r}
 # Import data
-
+passengers <- read.csv("../data/train.csv") 
 ```
 
 Lets understand this command a little more: 
@@ -69,15 +69,15 @@ Finally lets look at the data itself
 For this we use the function `summary(Robject)`.
 
 ```{r}
-# Generate summary of the data
-
+summary(passengers)
 ```
 
 This uses base R for showing you the summary. But we are learning the tidyverse so we will do this the tidy way and use a new symbol `%>%` called pipe.
 
 ```{r}
 # Summarize titanic using a pipe
-
+passengers %>%
+  summary()
 ```
 
 Note here we piped the data through a function. This is very powerful as we can pipe data from a function and the result through another function. This is kinda like how we think about our data.
@@ -86,7 +86,9 @@ For example say we want to drop all `NA` values and then get the summary of the 
 
 ```{r}
 # Summarize titanic after dropping na
-
+passengers %>% 
+  drop_na() %>% 
+  summary()
 ```
 
 You may have noticed stylistic consistency in the code that we've written above. That's because we're adhering to a style guide. In data science *and* programming/coding in general, it's important to get accustomed to using a style guide asap. As Hadley Wickham puts it in the [tidyverse style guide](http://style.tidyverse.org/index.html),
@@ -103,7 +105,8 @@ The `filter` verb chooses only the observations that match the condition. See it
 
 ```{r message = FALSE}
 # Filter to get all "male" rows
-
+passengers %>% 
+  filter(Sex == "male")
 ```
 **What do you see about the survival of male passenger?**
 **Note**: 
@@ -116,14 +119,16 @@ Do the same for female passengers
 
 ```{r message = FALSE}
 # Filter to get all "female" rows
-
+passengers %>% 
+  filter(Sex == "female")
 ```
 
 Lets say you wanted to `arrange` your observations by increaing Fare to see if you can notice any trends. You can use the **verb** `arrange` to achieve this:
 
 ```{r message = FALSE}
 # Arrange by increasing Fare
-
+passengers %>% 
+  arrange(Fare)
 ```
 
 **What can you see here?** 
@@ -132,7 +137,8 @@ You can also `arrange` by decreasing Fare:
 
 ```{r message = FALSE}
 # Arrange by decreasing Fare
-
+passengers %>% 
+  arrange(desc(Fare))
 ```
 
 
@@ -140,7 +146,8 @@ Sometimes you may wish to create new variables. We know that the variable "Parch
 
 ```{r message = FALSE}
 # Create new column FamSize (size of family)
-
+passengers %>% 
+  mutate(FamSize = Parch + SibSp)
 ```
 
 **Note:**
@@ -154,12 +161,16 @@ To test this hypothesis, create a new variable "FamSize" as the sum of "Parch" a
 ```{r message = FALSE}
 # Create new column FamSize (size of family)
 # Arrange by decreasing FamSize
-
+passengers %>% 
+  mutate(FamSize = Parch + SibSp) %>% 
+  arrange(desc(FamSize))
 ```
 
 As zeroes and ones don't often say a great deal, mutate the values of the "Survived" variable to strings "No" and "Yes" (and create new dataframe!):
 
 ```{r message = FALSE}
 # Turn numerical values of Survived column to "No" & "Yes" (new dataframe)
-
+passengers1 <- passengers %>% 
+  mutate(Survived = ifelse(Survived == 0, "No", "Yes"))
+passengers1
 ```
