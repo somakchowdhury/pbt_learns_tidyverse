@@ -2,8 +2,13 @@
 
 The sciences that explore biological data are going through a surge in terms of the amount of data they produce. One issue that has always plagued these areas is reroducible data analysis. 
 
+# Prerequisites
+
+BYOL (bring your own laptop) with functioning internet connection.
 
 # Course outline
+
+## PART 1
 
 - Installation
   - Install R [here](https://cloud.r-project.org/).
@@ -18,20 +23,40 @@ The sciences that explore biological data are going through a surge in terms of 
 - Introduction to R notebooks
   - Why R notebooks and not simple R scripts.
   - Narrate your data analysis to your future self
-- There are cheatsheets for most tidyverse packages. You can find useful ones in the `/cheetsheats` folder
-- 
+- There are cheatsheets for most tidyverse packages. You can find useful ones in the `/cheetsheats` folder.
+- Installing packages and loading them into an R session. 
+- Creating dependency lists for your analysis and loading the packages together in one go.
+- Keeping a track of your session. 
+- Saving everything and commiting changes.
 
+## PART 2
+
+- Typical data analysis workflow
+- Fire up tidyverse (Discuss output)
+- Import data into R (Discuss alternatives)
+- Inspecting the data
+- Summarize the data (base)
+- Summarize using a pipe (more powerful)
+- Convert data from wide to long format.
+- Drop observations from data
+
+## PART 3
+
+- Data filtering
+- Rearrange data
+- Create new columns and rearrange new columns
+- Change quantitative data into binary
+
+## PART 4
+
+- Plotting your data
+- ggplot grammer.
+- Plot types (scatter, barplots, boxplots)
+- Axis modifications
+- Themes
 
 
 # To do list
 
-- Add introduction to the course and motivation for it. 
-- Give PBT team members a list of pre-requisits for setting up their computers
-  - Open github account
-  - Create your first repository for R analysis.
-  - Using github and R studio
-  - What is an R project and why its important. 
-  - Emphasis that every project they work on should have data analysis as a repository on github
-  
 
  
