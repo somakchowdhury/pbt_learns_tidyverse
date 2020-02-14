@@ -7,21 +7,18 @@ The sciences that explore biological data are going through a surge in terms of 
 
 - Installation
   - Install R [here](https://cloud.r-project.org/).
-  - Install R studio [here] (http://www.rstudio.com/ide/download/)
-- Get your own github account [here] (https://github.com/join?source=header-home)
+  - Install R studio [here](http://www.rstudio.com/ide/download/)
+- Get your own github account [here](https://github.com/join?source=header-home)
 - Basics of github and create a new repository
 - Open R studio (without git integration)
 - Create your first R project (With git integration)
 - Why use github? What benefits do you and your data analysis gains.
 - Creating a folder structure in the R project created.
 - Create a deafult R notebook followed by knitting it into a html. 
-  - Download Markdown cheatsheet here
-  - Download tidyverse cheatsheet here
-  - Download ggplot2 cheatsheet here
-  - Download dplyr cheatsheet here
 - Introduction to R notebooks
   - Why R notebooks and not simple R scripts.
   - Narrate your data analysis to your future self
+- There are cheatsheets for most tidyverse packages. You can find useful ones in the `/cheetsheats` folder
 - 
 
 
