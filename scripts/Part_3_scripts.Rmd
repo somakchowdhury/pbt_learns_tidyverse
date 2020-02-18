@@ -171,3 +171,173 @@ Now lets save the object plot.
 ```
 
 
+# Assembly of multiple plots in a single figure. 
+
+Two packages are available for doing this task. 
+
+1. [Patchwork](https://patchwork.data-imaginist.com/index.html)
+2. [Cowplot](https://wilkelab.org/cowplot/index.html)
+
+## Patchwork based graphical assembly. 
+
+We will use the famous mtcars dataset for this which comes embedded in R and assemble a collage of plots first with patchwork. 
+
+### First lets have a look at the data 
+
+```{r Look at the mtcars data set}
+mtcars # View the data frame directly
+dim(mtcars)# How big is this dataset?
+```
+
+### Load up the library
+
+Patchwork is not available as a part of CRAN yet. Its in development and needs a slightly tweaked approach to installation.
+
+```{r Installing Patchwork and loading the library}
+install.packages("devtools") # Use devtools package to install packages under devt
+devtools::install_github("thomasp85/patchwork") # Install directly from the development reporsitory
+library(patchwork)
+```
+
+### Produce the plots
+
+Here we work with 4 plots and learn arranging the plots in different ways
+
+```{r Produce the plots for patchwork}
+p1 <- ggplot(mtcars) + geom_point(aes(mpg, disp))+ ggtitle("Plot 1")+theme_bw()
+p2 <- ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))+ ggtitle("Plot 2")+theme_bw()
+p3 <- ggplot(mtcars) + geom_smooth(aes(disp, qsec))+ ggtitle("Plot 3")+theme_bw()
+p4 <- ggplot(mtcars) + geom_bar(aes(carb))+ ggtitle("Plot 4")+theme_bw()
+```
+
+### Examples of plot arrangements
+
+1. Lets arrange plots p1 and p2 beside one another.
+
+```{r Patchwork Example1: Two plots}
+
+```
+
+2. Arrange all four plots together
+
+Say you want 3 of the four plots in the top panel and one plot underneath all of these
+
+```{r Patchwork Example2: Four plots together}
+
+
+
+```
+
+3. Including facetted plots
+
+An interesting thing about ggplot is that it lets you make plots where you can use a categorical variable such as `male` or `female` or say information in the gear column of the `mtcars` dataset. 
+We will replace plot 4 with a facetted plot, with facetting happening with the variable `cyl` (number of cylinders in the car)
+
+```{r facetted plot example}
+
+```
+**What do you see in the plot you just made from the graphing point of view?**
+
+4. Nested patchwork
+
+Lets you still want two plots together but the second one is a composite of other two plots. 
+
+In this case lets say plot `p1` is our primary plot and second section contains `p2+p3`. Can we make such an arrangement?
+
+```{r Patchwork Ex4: Custom combination of plots }
+
+```
+
+5. Adding non-ggplot content to graph
+
+```{r Patchwork Ex5}
+
+```
+
+6. Add a table instead
+
+```{r Patchwork Ex6}
+
+```
+
+7. Stacking alternatives
+
+You can find many of these at this [patchwork vignette](https://patchwork.data-imaginist.com/articles/guides/assembly.html)
+
+- on top of one another
+
+```{r Patchwork Ex7a}
+
+```
+ - Beside one another
+ 
+```{r Patchwork Ex7b}
+
+```
+ 
+ - Now for 3 plots
+ 
+```{r Patchwork Ex7c}
+
+```
+ 
+8. Add annotation. 
+
+Again many examples are available from this [patchwork vignette](https://patchwork.data-imaginist.com/articles/guides/annotation.html)
+
+- Adding common title to a `patchwork assembly`
+
+```{r Add title to patchwork assembly}
+
+```
+
+- Tagging plots with A,B, ... 
+
+This is often what you do in inkscape or other software. Now you can do it while plotting. 
+
+```{r Tagging example}
+
+```
+
+- you may want to do it as 1A, 1B and so on. This is how it can be done. 
+
+```{r Recursive numbering}
+
+patchwork[[1]] <- patchwork[[1]] + plot_layout(tag_level = 'new')
+#Simple layout
+
+
+#Something more complex
+
+```
+
+Many more ways exist for manipulating how plots are arranged. do look at the vignettes.
+
+## Cowplot based graphical assembly. 
+
+Install cowplot. Cowplot fortuately is available on CRAN and installtion is simply one line of code. 
+
+```{r Install and load cowplot}
+
+```
+
+Lets now work with the four plots we already have produced for patchwork
+
+Ploting them together now.
+The prime go to function for plot arrangements is : 
+`plot_grid` = Cowplot function called for plot arrangement
+
+Note you could use `plot_grid` to create an R object. 
+
+```{r}
+# Specify labels
+
+# Auto assign lables
+
+# Setting label characterisitics
+
+```
+
+Cowplot comes with its own wiki. You can access the wiki [here](https://wilkelab.org/cowplot/index.html)
+
+
