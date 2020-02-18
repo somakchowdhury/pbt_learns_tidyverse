@@ -188,6 +188,7 @@ We will use the famous mtcars dataset for this which comes embedded in R and ass
 mtcars # View the data frame directly
 dim(mtcars)# How big is this dataset?
 ```
+More about the data set can be read [here](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html)
 
 ### Load up the library
 
