@@ -208,3 +208,32 @@ Now lets save the object plot.
 ggsave("../Output/plot.pdf", plot = plot, scale = 1, width = 10, height = 10, units = c("cm"), dpi=600)
 ```
 
+# Assembly of multiple plots in a single figure. 
+
+Two packages are available for doing this task. 
+
+1. [Patchwork](https://patchwork.data-imaginist.com/index.html)
+2. [Cowplot](https://wilkelab.org/cowplot/index.html)
+
+## Patchwork based graphical assembly. 
+
+We will use the famous mtcars dataset for this which comes embedded in R and assemble a collage of plots first with patchwork. 
+
+### First lets have a look at the data 
+
+```{r Look at the mtcars data set}
+mtcars # View the data frame directly
+dim(mtcars)# How big is this dataset?
+```
+
+### Load up the library
+
+Patchwork is not available as a part of CRAN yet. Its in development and needs a slightly tweaked approach to installation.
+
+```{r Installing Patchwork and loading the library}
+install.packages("devtools") # Use devtools package to install packages under devt
+devtools::install_github("thomasp85/patchwork") # Install directly from the development reporsitory 
+```
+
+
+
