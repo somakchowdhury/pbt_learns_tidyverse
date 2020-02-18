@@ -54,7 +54,7 @@ BYOL (bring your own laptop) with functioning internet connection.
 
 
 # To do list
- - Make repo public
+ - Add cowplot and pathwork for compsite graph building.
 
 
  
