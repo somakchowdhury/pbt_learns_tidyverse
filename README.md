@@ -14,6 +14,7 @@ BYOL (bring your own laptop) with functioning internet connection.
 - Installation
   - Install R [here](https://cloud.r-project.org/).
   - Install R studio [here](http://www.rstudio.com/ide/download/)
+- Setup Git on your computer via github desktop client from [here](https://desktop.github.com/)
 - Get your own github account [here](https://github.com/join?source=header-home)
 - Basics of github and create a new repository
 - Open R studio (without git integration)
