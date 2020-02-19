@@ -19,7 +19,7 @@ BYOL (bring your own laptop) with functioning internet connection.
 - Basics of github and create a new repository
 - Open R studio (without git integration)
 - Create your first R project (With git integration)
-- Why use github? What benefits do you and your data analysis gains.
+- Why use github? What benefits do you and your data analysis gain?
 - Creating a folder structure in the R project created.
 - Create a deafult R notebook followed by knitting it into a html. 
 - Introduction to R notebooks
