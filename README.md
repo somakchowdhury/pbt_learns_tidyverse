@@ -52,10 +52,9 @@ BYOL (bring your own laptop) with functioning internet connection.
 - Plot types (scatter, barplots, boxplots)
 - Axis modifications
 - Themes
+- Making composite plots (Patchwork and Cowplot)
 
 
 # To do list
- 
-
 
  
