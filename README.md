@@ -28,7 +28,7 @@ BYOL (bring your own laptop) with functioning internet connection.
 - There are cheatsheets for most tidyverse packages. You can find useful ones in the `/cheetsheats` folder.
 - Installing packages and loading them into an R session. 
 - Keeping a track of your session. 
-- Saving everything and commiting changes.
+- Saving everything and commiting changes. {Refer to the wiki for smooth [GIT integration](https://github.com/somakchowdhury/pbt_learns_tidyverse/wiki/Git-based-version-control-using-R-studio.)}
 
 ## PART 2
 
