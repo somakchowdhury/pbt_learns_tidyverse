@@ -77,9 +77,16 @@ Faceting is a way to produce multiple plots simultaneously:
 
 ```{r message = FALSE}
 # Scatter plot of Age vs Fare colored by Sex faceted by Survived
-ggplot(passengers1, aes(x = Age, y = Fare, color = Sex)) +
+ggplot(passengers1 %>% drop_na(), aes(x = Age, y = Fare, color = Sex)) +
   geom_point() +
   facet_grid(~Survived)
+
+# Change facet grid order in ggplot graph.
+passengers1$Survived_f = factor(passengers1$Survived, levels=c('Yes','No'))
+
+ggplot(passengers1 %>% drop_na(), aes(x = Age, y = Fare, color = Sex)) +
+  geom_point() +
+  facet_grid(.~Survived_f)
 ```
 **What can you see here?** 
 
@@ -87,7 +94,7 @@ Now let's redo our bar plot of passenger "Sex" and this time fill our bars accor
 
 ```{r message = FALSE}
 # Plot barplot of passenger Sex & fill according to Survival
-ggplot(passengers1, aes(x = Sex, fill = Survived)) +
+ggplot(passengers1 %>% drop_na(), aes(x = Sex, fill = Survived)) +
   geom_bar()
 ```
 
