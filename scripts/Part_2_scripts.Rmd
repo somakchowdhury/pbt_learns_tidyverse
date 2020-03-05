@@ -40,7 +40,7 @@ So here you are telling R that create an object called `passengers` and add info
 **To see help on a function use the following command** 
 ```{r}
 #Check help for a certain function
-#?read.csv
+?read.csv
 ```
 
 
@@ -54,7 +54,7 @@ Here is a data import command for a tab separated file.
 #passengers <- read_tsv("file.tsv")
 
 #Another way
-# passengers <- read.delim("../data/file.txt", header = TRUE, check.names=F)
+# passengers <- read.delim("../data/file.txt", header = TRUE, check.names=F, sep="|")
 ```
 Try to see the functions associated with added options used in the alternative data import command.
 
@@ -69,6 +69,7 @@ Finally lets look at the data itself
 For this we use the function `summary(Robject)`.
 
 ```{r}
+?summary
 summary(passengers)
 ```
 
@@ -106,7 +107,7 @@ The `filter` verb chooses only the observations that match the condition. See it
 ```{r message = FALSE}
 # Filter to get all "male" rows
 passengers %>% 
-  filter(Sex == "male")
+  filter(Sex == "male" ) 
 ```
 **What do you see about the survival of male passenger?**
 **Note**: 
@@ -137,7 +138,7 @@ You can also `arrange` by decreasing Fare:
 
 ```{r message = FALSE}
 # Arrange by decreasing Fare
-passengers %>% 
+exportedTable <- passengers %>% 
   arrange(desc(Fare))
 ```
 

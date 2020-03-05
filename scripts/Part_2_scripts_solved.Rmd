@@ -15,7 +15,7 @@ We will be learning how to import data and use tidyverse to explore the data.
 
 ```{r}
 # Activate package tidyverse
-#library(tidyverse)
+library(tidyverse)
 ```
 
 ## 2. Import data for this excercise. 
